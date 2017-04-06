@@ -29,17 +29,27 @@ namespace VariableSizedWrapGridUWP
         public MainPage()
         {
             this.InitializeComponent();
-            var _Colors = typeof(Colors).GetRuntimeProperties().Select((c,x) => new { Color = (Windows.UI.Color)c.GetValue(null), Name = c.Name, index=x,ColSpan=ColSpan(x), RowSpan=RowSpan(x)});
+            var _Colors = typeof(Colors).GetRuntimeProperties().Select((c,x) => new { Color = (Windows.UI.Color)c.GetValue(null), Name = c.Name, Index=x,ColSpan=ColSpan(x), RowSpan=RowSpan(x)});
             this.DataContext = _Colors;
         }
 
-        private object RowSpan(int x)
+        private object RowSpan(int i)
         {
+            if (i == 0)
+                return 2;
+            if (i == 2)
+                return 3;
+            if (i == 7)
+                return 4;
             return 1;
         }
 
-        private object ColSpan(int x)
+        private object ColSpan(int i)
         {
+            if (i == 0)
+                return 2;
+            if (i == 6)
+                return 3;
             return 1;
         }
 
